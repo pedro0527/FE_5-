@@ -13,20 +13,106 @@
 <!-- 아래와 같은 형식으로 for문을 사용하여 작성하세요 -->
 
 <!-- 데이터 사용 예시 -->
-<div style="display: flex">
-  {% for product in products %}
-  <a href="product/{{product.id}}">
-    <img src="{{product.image_url}}" style="width: 100px" />
-    <p>{{product}}</p>
-    <p>{{product.description}}</p>
-    <p>{{product.origin_price}}원</p>
-    <p>{{product.discount_rate}}%</p>
-    <p>{{product.discount_price}}원</p>
-  </a>
-  {% endfor %}
-</div>
-<!-- 데이터 사용 예시 -->
+<div class ="screen">
+  <div id="tag">
+    <button class="tagitem">인기신상랭킹</button>
+    <button class="tagitem">입점특가</button>
+    <button class="tagitem">간편한끼</button>
+    <button class="tagitem">요즘간식</button>
+    <button class="tagitem">주방·리빙</button>
+    <button class="tagitem">뷰티</button>
+    <button class="tagitem">패션·잡화</button>
+  </div>
 
-<!-- js 파일 -->
+  <div id="body">
+    <div class="item">
+      <div id="head">
+        <h3>필터</h3>
+        <div id="head1">
+          <button id="reset">
+            <h3><img src="{% static 'assets/icons/reset.svg' %}" id='reset_img'/>초기화</h3>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="item">
+      <div id="cat">
+        <h3>카테고리</h3>
+        <div id="cat1">
+          <h3><img src="{% static 'assets/icons/up.svg' %}" id='up_img'/></h3>
+        </div>
+      </div>
+      <div id='frame8'>
+        <label for="skin">
+          <input type="checkbox" name="group" id="skin" value="68"/>
+          스킨케어·메이크업 <B1 class='product_num'>68</B1>
+        </label>
+        <label for="luxury">
+          <input type="checkbox" style="color: #E2E2E2;" name="group" id="luxury" value="24"/>
+          럭셔리뷰티 <B1 class='product_num'/>24</B1>
+        </label>
+        <label for="snack">
+          <input type="checkbox" name="group" id="snack" value="28"/>
+          간식·과자·떡 <B1 class='product_num'/>28</B1>
+        </label>
+      </div>
+    </div>
+
+    <div class="item">
+      <div id='sorting'>
+        <div id="total"><h3>총 120건</h3></div>
+        <div id="sorting1">
+          <button class='sorting_btn' style ="color: #333333" id='clicked_soring_btn'>추천순 |</button>
+          <button class='sorting_btn'>신상품순 |</button>
+          <button class='sorting_btn'>판매량순 |</button>
+          <button class='sorting_btn'>혜택순 |</button>
+          <button class='sorting_btn'>낮은 가격순 |</button>
+          <button class='sorting_btn'>높은 가격순 |</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div id='filter'>
+        <div id='skin_text'>스킨케어·메이크업
+          <button id='skin_deletebtn'>
+            <img src="{% static 'assets/icons/close.svg' %}" class='close_btn'/>
+          </button>
+        </div>
+        <div id='luxury_text'>럭셔리뷰티
+          <button id='luxury_deletebtn'>
+            <img src="{% static 'assets/icons/close.svg' %}" class='close_btn'/>
+          </button>
+        </div>
+        <div id='snack_text'>간식·과자·떡
+          <button id='snack_deletebtn'>
+            <img src="{% static 'assets/icons/close.svg' %}" class='close_btn'/>
+          </button>
+        </div>
+      </div>
+      <div id="item_list">
+        {% for product in products %}
+        <div class="product">
+          <img src="{{product.image_url}}" style="width: 100px" 
+          class='product_img'/>
+          <div class="shopping_button">
+            <button id="btn"><img src="{% static 'assets/icons/cart.svg' %}" id='cart_img'/>담기</button>
+          </div>
+          <a href="product/{{product.id}}">
+            <p id='delivery_company'>샛별배송<p> 
+            <p id='product_name'>{{product}}</p>
+            <p id='product_description'>{{product.description}}</p>
+            <p id='origin_price'>{{product.origin_price}}원</p>
+            <p id='discount_rate'>{{product.discount_rate}}%</p>
+            <p id='discount_price'>{{product.discount_price}}원</p>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+</div>
 <script src="{% static 'js/main/main_page.js'%}"></script>
-{% endblock %}
+{% endblock %} 
+
