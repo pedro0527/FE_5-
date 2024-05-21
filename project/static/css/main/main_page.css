@@ -65,7 +65,7 @@
 }
 
 #reset {
-    color: var(--font-font-3, #DDD);
+    color: var(--font-font-3, #999999);
     font-family: Pretendard;
     font-size: 15px;
     font-style: normal;
@@ -181,6 +181,7 @@
 .product_img{
     width: 249px !important; 
     height: 320px !important; 
+    margin-top: 32px;
 }
 
 
