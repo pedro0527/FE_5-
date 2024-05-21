@@ -112,5 +112,3 @@ const delete_snackfilter=()=>{
 filter_snackbtn.addEventListener('click',delete_snackfilter);
 filter_snackbtn.addEventListener('click',snackfilter);
 filter_snackbtn.addEventListener('click',update_total_product);
-
-
