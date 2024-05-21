@@ -8,7 +8,6 @@ const reset=()=>{
         skin_filter.style.display='none';
         luxury_filter.style.display='none';
         snack_filter.style.display='none';
-
         })
 }
 
