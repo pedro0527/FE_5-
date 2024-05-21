@@ -171,7 +171,6 @@
     width:249px;
     flex-direction: column;
     gap: 6px;
-    display: none;
 }
 
 .product:nth-child(-n+3) {

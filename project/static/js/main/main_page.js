@@ -4,10 +4,10 @@ const reset=()=>{
     const checkboxes=document.querySelectorAll("input[type='checkbox'][name='group']")
     checkboxes.forEach((checkbox)=>{
         checkbox.checked=false;
-        filter_box.style.display='none';
-        skin_filter_box.style.display='none';
-        luxury_filter_box.style.display='none';
-        snack_filter_box.style.display='none';
+        filter.style.display='none';
+        skin_filter.style.display='none';
+        luxury_filter.style.display='none';
+        snack_filter.style.display='none';
 
         })
 }
