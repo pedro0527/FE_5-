@@ -1,6 +1,89 @@
-<!-- 임시 회원가입 페이지 -->
-{% extends 'base.html' %} {% block content %}
-<div class="container">
-  <h2>회원가입</h2>
+{% extends 'base.html' %} 
+{% block content %} 
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/accounts/signup.css'%}" />
+
+<div class="screen">
+  <div class="main">
+    <div class="Body">
+      <form class="signup" action="{% url 'accounts:signup' %}" method="POST">
+        {% csrf_token %}
+        <p class="signup_heading">회원가입</p>
+        <hr class="hr_1">
+        <div class="input_list">
+          <div class="signup_field">
+            <p class="signup_label">아이디</p>
+            <div class="signup_input_wrapper">
+              <input type="text" class="signup_input_field" placeholder="아이디를 입력해주세요" name="username" id="username" required>
+            </div>
+          </div>
+          <div class="signup_field">
+            <p class="signup_label">비밀번호</p>
+            <div class="signup_input_wrapper">
+              <input type="password" class="signup_input_field" placeholder="비밀번호를 입력해주세요" name="password" id="password" required>
+              <ul class="password_instructions">
+                <li>⋅  비밀번호를 8자 이상으로 작성해주세요.</li>
+                <li>⋅  영문 대소문자, 숫자, 특수문자를 하나 이상포함해주세요.</li>
+                <li>⋅  사용가능 특수문자 @!?-_</li>
+              </ul>
+            </div>
+          </div>
+          <div class="signup_field">
+            <p class="signup_label">비밀번호 확인</p>
+            <div class="signup_input_wrapper">
+              <input type="password" class="signup_input_field" placeholder="비밀번호를 한번 더 입력해주세요" name="password2" id="password_confirm" required>
+              <p class="error_message Caption" id="password_mismatch">비밀번호가 일치하지 않습니다!</p>
+            </div>
+          </div>
+        </div>
+        <hr class="hr_2">
+        <div class="signup_button_wrapper" id="signup_button_wrapper">
+          <button type="submit" class="signup_button font-font2 Btn" id="signup_button" disabled>가입하기</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+    const passwordConfirm = document.getElementById("password_confirm");
+    const signupButton = document.getElementById("signup_button");
+    const signupButtonWrapper = document.getElementById("signup_button_wrapper");
+    const passwordMismatch = document.getElementById("password_mismatch");
+
+    const passwordRegex = /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[@!?_-]).{8,}$/;
+
+    username.addEventListener("input", handleInput);
+    password.addEventListener("input", handleInput);
+    passwordConfirm.addEventListener("input", handleInput);
+
+    function handleInput() {
+      updateSignupButtonState();
+    }
+
+    function updateSignupButtonState() {
+      if (username.value.trim().length > 0 && password.value === passwordConfirm.value && passwordRegex.test(password.value)) {
+        signupButton.disabled = false;
+        signupButtonWrapper.style.backgroundColor = "#5E0080";
+        signupButton.style.color = "#fff";
+        passwordMismatch.style.display = "none";
+      } else if (password.value === passwordConfirm.value) {
+        signupButton.disabled = true;
+        signupButtonWrapper.style.backgroundColor = "#E2E2E2";
+        signupButton.style.color = "#999";
+        passwordMismatch.style.display = "none";
+      } else {
+        signupButton.disabled = true;
+        signupButtonWrapper.style.backgroundColor = "#E2E2E2";
+        signupButton.style.color = "#999";
+        passwordMismatch.style.display = "";
+      }
+    }
+  });
+</script>
+
 {% endblock %}

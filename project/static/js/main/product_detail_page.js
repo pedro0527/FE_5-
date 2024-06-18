@@ -1,1 +1,6 @@
 /* product detail page - JS */
+
+
+
+
+
